@@ -14,7 +14,7 @@
 ## Canonical H-paths
 
 - `H:\Мой диск\AI_Native\seo-commercial-audit-department\projects\romastone.ru\README.md`
-- `H:\Мой диск\AI_Native\seo-commercial-audit-department\projects\romastone.ru\romastone-seo-roadmap\drafts_register.md`
+- `H:\Мой диск\AI_Native\seo-commercial-audit-department\projects\romastone.ru\romastone-seo-roadmap\drafts\drafts_register.md`
 
 ## GitHub preservation contour
 
