@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROMASTONE — SEO и продуктовая дорожная карта</title>
+  <style>
+    :root {
+      --paper: #f7f6f3;
+      --white: #fff;
+      --ink: #20262d;
+      --muted: #66717b;
+      --line: #dbe0df;
+      --pink: #e80063;
+      --pink-dark: #b9004e;
+      --stone: #a6aaac;
+      --pale-pink: #ffe7ef;
+      --pale-stone: #e9ebea;
+      --shadow: 0 20px 50px rgba(25, 34, 39, .09);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 87% 2%, rgba(232, 0, 99, .09), transparent 21rem),
+        linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin: auto; }
+    .eyebrow {
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .site-header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(32,38,45,.08);
+    }
+    .header-inner { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: flex; align-items: center; gap: 13px; font-size: 22px; font-weight: 900; letter-spacing: -.08em; color: var(--pink); }
+    .brand-mark { display: inline-block; transform: skewX(-15deg); }
+    .brand small { color: var(--ink); font-size: 8px; letter-spacing: .18em; line-height: 1.15; text-transform: uppercase; }
+    .nav { display: flex; gap: 22px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .nav a:hover { color: var(--pink); }
+
+    .cover { min-height: 620px; padding: 108px 0 76px; position: relative; overflow: hidden; }
+    .cover:after {
+      content: ""; position: absolute; width: 440px; height: 440px; right: -110px; bottom: -170px;
+      background: conic-gradient(from 52deg, #20262d, #737c80, #e7e9e8, #3c464a, #20262d);
+      border-radius: 50%; box-shadow: inset 22px 12px 55px rgba(255,255,255,.27), 0 45px 80px rgba(20,25,29,.25);
+      opacity: .88;
+    }
+    .cover:before { content: ""; position: absolute; right: 23%; bottom: 46px; width: 240px; height: 3px; background: var(--pink); transform: rotate(-19deg); }
+    .cover-copy { position: relative; z-index: 1; max-width: 820px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin: 16px 0 26px; max-width: 920px; font-size: clamp(44px, 7vw, 94px); font-weight: 300; line-height: .94; letter-spacing: -.065em; text-transform: uppercase; }
+    h1 strong { font-weight: 800; }
+    .lead { width: min(610px, 100%); font-size: 20px; color: #4a535b; }
+    .cover-meta { margin-top: 50px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .pill { border: 1px solid var(--line); background: rgba(255,255,255,.8); border-radius: 999px; padding: 9px 13px; font-size: 12px; font-weight: 700; }
+    .pill b { color: var(--pink); }
+
+    .pain { background: var(--white); }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); border-radius: var(--radius); overflow: hidden; }
+    .pain-card { min-height: 276px; padding: 28px; background: var(--white); }
+    .pain-card:nth-child(2) { background: #fff2f6; }
+    .pain-card:nth-child(3) { background: #272e34; color: var(--white); }
+    .pain-card .number { color: var(--pink); font-size: 13px; font-weight: 900; letter-spacing: .1em; }
+    .pain-card h3 { margin: 38px 0 13px; font-size: 28px; line-height: .98; letter-spacing: -.055em; }
+    .pain-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .pain-card:nth-child(3) p { color: #c6cdd0; }
+    .result-band { margin-top: 18px; padding: 28px 34px; background: var(--ink); color: var(--white); border-radius: 18px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: center; }
+    .result-band b { color: #ff77a9; font-size: 13px; letter-spacing: .1em; }
+    .result-band p { margin: 0; font-size: 19px; line-height: 1.2; letter-spacing: -.025em; }
+
+    section { padding: 92px 0; }
+    .section-heading { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(330px, 1.28fr); gap: 68px; align-items: start; margin-bottom: 42px; }
+    .section-heading h2 { margin: 8px 0 0; font-size: clamp(32px, 4.1vw, 56px); line-height: .96; letter-spacing: -.06em; text-transform: uppercase; font-weight: 300; }
+    .section-heading p { margin: 8px 0 0; max-width: 590px; color: var(--muted); font-size: 17px; }
+
+    .score-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .score { background: var(--white); border: 1px solid #eceeed; border-radius: 18px; padding: 22px; min-height: 170px; box-shadow: 0 8px 20px rgba(18,24,28,.04); }
+    .score b { display: block; margin-top: 25px; font-size: 37px; line-height: 1; letter-spacing: -.07em; }
+    .score span { color: var(--muted); font-size: 13px; }
+    .score strong { display: inline-block; padding: 4px 7px; border-radius: 5px; background: var(--pale-pink); color: var(--pink-dark); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+
+    .principle { background: var(--ink); color: var(--white); }
+    .principle .section-heading p { color: #cbd1d2; }
+    .principle h2 { color: var(--white); }
+    .quote { max-width: 850px; margin-left: auto; font-size: clamp(28px, 4vw, 50px); line-height: 1.05; letter-spacing: -.055em; }
+    .quote em { color: #ff639f; font-style: normal; }
+
+    .queue-switch { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .queue-button { border: 1px solid var(--line); background: var(--white); color: var(--ink); border-radius: 999px; padding: 12px 16px; font: 700 13px/1 Arial, sans-serif; cursor: pointer; }
+    .queue-button[aria-selected="true"] { background: var(--pink); color: white; border-color: var(--pink); }
+    .queue-panel { display: none; grid-template-columns: .9fr 1.1fr; gap: 18px; }
+    .queue-panel.is-active { display: grid; }
+    .queue-intro { padding: 28px; border-radius: var(--radius); background: var(--pale-pink); min-height: 350px; display: flex; flex-direction: column; }
+    .queue-intro h3 { margin: 15px 0 12px; font-size: 38px; letter-spacing: -.06em; line-height: .96; }
+    .queue-intro p { color: #59414b; font-size: 16px; }
+    .queue-number { margin-top: auto; color: var(--pink); font-size: 75px; font-weight: 900; line-height: .7; letter-spacing: -.09em; }
+    .steps { display: grid; gap: 10px; }
+    .step { display: grid; grid-template-columns: 42px 1fr; gap: 14px; padding: 16px 18px; border: 1px solid #e4e7e6; border-radius: 16px; background: var(--white); }
+    .step-index { color: var(--pink); font-size: 14px; font-weight: 900; }
+    .step h4 { margin: 0 0 4px; font-size: 16px; }
+    .step p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .architecture { background: #ebeceb; }
+    .tree { display: grid; gap: 10px; }
+    .tree-row { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center; padding: 16px 18px; border-radius: 14px; background: rgba(255,255,255,.75); }
+    .tree-row b { color: var(--pink); font-size: 13px; }
+    .tree-row span { color: #394149; font-size: 15px; }
+    .tree-row.accent { background: var(--ink); }
+    .tree-row.accent b, .tree-row.accent span { color: white; }
+
+    .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .page-card { overflow: hidden; background: var(--white); border: 1px solid #eaedeb; border-radius: 20px; box-shadow: var(--shadow); }
+    .page-visual { min-height: 220px; padding: 18px; position: relative; overflow: hidden; }
+    .page-visual:after { content:""; position:absolute; width:190px; height:190px; right:-35px; bottom:-75px; border-radius:50%; background: linear-gradient(135deg,#eef0ee,#4a5155); box-shadow: inset 25px 17px 32px rgba(255,255,255,.5); }
+    .page-visual.pink { background: linear-gradient(135deg,#fff,#ffe3ee); }
+    .page-visual.dark { background: linear-gradient(135deg,#292f35,#687278); color:white; }
+    .page-visual.light { background: linear-gradient(135deg,#edf0ef,#fff); }
+    .page-type { position: relative; z-index: 1; display: inline-block; padding: 6px 9px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .page-visual h3 { position: relative; z-index: 1; max-width: 230px; margin: 53px 0 0; font-size: 29px; line-height: .96; letter-spacing: -.06em; }
+    .page-copy { padding: 20px; }
+    .page-copy p { color: var(--muted); font-size: 14px; }
+    .page-copy ul { margin: 14px 0 0; padding: 0; list-style: none; }
+    .page-copy li { border-top: 1px solid #edf0ee; padding: 10px 0; font-size: 13px; }
+    .page-copy li:before { content: "—"; color: var(--pink); margin-right: 8px; }
+
+    .tool-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 17px; }
+    .tool-main { padding: 34px; background: var(--pink); color: white; border-radius: var(--radius); min-height: 335px; display: flex; flex-direction: column; }
+    .tool-main h3 { max-width: 620px; margin: 24px 0 16px; font-size: 43px; line-height: .95; letter-spacing: -.06em; }
+    .tool-main p { max-width: 560px; color: #ffe4ef; }
+    .flow { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+    .flow span { padding: 8px 10px; border: 1px solid rgba(255,255,255,.52); border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .tool-side { display: grid; gap: 17px; }
+    .tool-small { padding: 25px; min-height: 159px; background: var(--white); border: 1px solid #e8eae9; border-radius: 20px; }
+    .tool-small h3 { margin: 8px 0 9px; font-size: 25px; letter-spacing: -.05em; }
+    .tool-small p { margin: 0; color: var(--muted); font-size: 13px; }
+    .business-case { margin-top: 18px; padding: 25px 28px; border: 1px solid #eadde2; border-radius: 18px; background: #fff9fb; }
+    .business-case h3 { margin: 0 0 7px; font-size: 21px; letter-spacing: -.04em; }
+    .business-case p { margin: 0; color: var(--muted); font-size: 14px; }
+    .business-case b { color: var(--pink-dark); }
+
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; overflow: hidden; border-radius: var(--radius); background: var(--line); }
+    .phase { min-height: 290px; padding: 28px; background: var(--white); }
+    .phase:nth-child(2) { background: #f9e5ed; }
+    .phase:nth-child(3) { background: var(--ink); color: white; }
+    .phase small { color: var(--pink); font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .phase h3 { margin: 42px 0 15px; font-size: 30px; line-height: .96; letter-spacing: -.06em; }
+    .phase p { color: var(--muted); font-size: 14px; }
+    .phase:nth-child(3) p { color: #cdd2d2; }
+    .phase ul { padding-left: 17px; margin: 16px 0 0; font-size: 13px; }
+    .phase li + li { margin-top: 7px; }
+
+    .control { background: var(--white); }
+    .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+    .control-card { padding: 28px; border-top: 4px solid var(--pink); background: var(--paper); }
+    .control-card h3 { font-size: 27px; letter-spacing: -.05em; margin: 0 0 12px; }
+    .control-card p { color: var(--muted); }
+    .control-card ul { padding-left: 19px; font-size: 14px; }
+    .footer { padding: 52px 0 38px; background: var(--ink); color: white; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 30px; align-items: end; }
+    .footer h2 { max-width: 600px; margin: 10px 0 0; font-size: clamp(30px,4vw,51px); line-height: .96; letter-spacing: -.06em; text-transform: uppercase; font-weight: 300; }
+    .footer p { color: #bdc6c8; margin: 0; max-width: 280px; font-size: 13px; }
+
+    @media (max-width: 800px) {
+      .shell { width: min(100% - 32px, 1180px); }
+      .nav { display: none; }
+      .cover { min-height: 550px; padding-top: 80px; }
+      .cover:after { width: 330px; height: 330px; right: -130px; bottom: -115px; }
+      .section-heading, .queue-panel, .tool-grid, .control-grid { grid-template-columns: 1fr; gap: 24px; }
+      .score-grid, .examples, .timeline, .pain-grid { grid-template-columns: 1fr 1fr; }
+      .result-band { grid-template-columns: 1fr; gap: 10px; }
+      .queue-intro { min-height: 250px; }
+      .tree-row { grid-template-columns: 1fr; gap: 6px; }
+      .footer-inner { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 520px) {
+      section { padding: 62px 0; }
+      .score-grid, .examples, .timeline, .pain-grid { grid-template-columns: 1fr; }
+      .cover { min-height: 520px; }
+      h1 { font-size: 52px; }
+      .lead { font-size: 17px; }
+      .tool-main h3 { font-size: 35px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Romastone: дорожная карта"><span class="brand-mark">ROMASTONE</span><small>сила<br>кварца</small></a>
+      <nav class="nav" aria-label="Навигация презентации">
+        <a href="#status">Точка старта</a>
+        <a href="#queues">3 очереди</a>
+        <a href="#architecture">Страницы</a>
+        <a href="#tools">Инструменты</a>
+        <a href="#roadmap">Порядок</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="cover">
+      <div class="shell cover-copy">
+        <div class="eyebrow">SEO и продуктовая дорожная карта / 14.07.2026</div>
+        <h1>ROMASTONE:<br><strong>не просто</strong> каталог камня</h1>
+        <p class="lead">Не переделка ради дизайна. План превращает сайт из витрины, которая почти не приводит спрос, в понятный канал: его находят, ему доверяют, через него оставляют проекты на расчет.</p>
+        <div class="cover-meta">
+          <span class="pill"><b>01</b> быстрый SEO-ремонт</span>
+          <span class="pill"><b>02</b> новые точки входа</span>
+          <span class="pill"><b>03</b> инструменты продаж</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="pain">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Зачем Роме это менять</div><h2>Сайт не дает трафик не потому, что он плохой.</h2></div>
+          <p>У Romastone уже есть материал для роста. Но поисковик не всегда понимает, по каким задачам показать сайт, а клиент не всегда находит ответ на свои главные вопросы раньше, чем закроет вкладку.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="pain-card"><span class="number">01 / ПОИСК</span><h3>Спрос проходит мимо.</h3><p>Слабые посадочные, общие заголовки и технические страницы не дают поисковику уверенно привести человека, который ищет конкретное изделие под свою задачу.</p></article>
+          <article class="pain-card"><span class="number">02 / ВЫБОР</span><h3>Клиент не понимает следующий шаг.</h3><p>Он видит камень, но не понимает, подойдет ли он к его кухне, сколько будет стоить работа и что отправить для расчета. В итоге заявка не возникает.</p></article>
+          <article class="pain-card"><span class="number">03 / ПРОДАЖА</span><h3>Менеджер каждый раз начинает с нуля.</h3><p>Без подготовленного проекта, параметров и выбранных вариантов консультация дольше, а часть нецелевых обращений съедает время команды.</p></article>
+        </div>
+        <div class="result-band"><b>ЧТО ПОЛУЧАЕТ РОМА</b><p>Больше целевых входов из поиска, больше заявок с понятной задачей и меньше ручного объяснения базовых вещей. Не «красивый новый сайт», а более управляемая воронка продаж.</p></div>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Точка старта</div>
+            <h2>База есть.<br>Система<br>не собрана.</h2>
+          </div>
+          <p>Romastone уже выглядит как зрелый бренд: есть каталог, производство, шоу-рум и реализованные работы. Следующий шаг — собрать эти доказательства в маршрут, который понятен и поисковику, и человеку с проектом кухни.</p>
+        </div>
+        <div class="score-grid">
+          <article class="score"><strong>200 OK</strong><b>HTTPS</b><span>Главная, robots.txt и sitemap доступны; технический фундамент не требует спасения.</span></article>
+          <article class="score"><strong>638</strong><b>товаров</b><span>Большой ассортимент уже может давать поисковые входы по декорам и брендам.</span></article>
+          <article class="score"><strong>1</strong><b>кейс</b><span>Доверие и реальные примеры пока не соответствуют стоимости и сложности заказа.</span></article>
+          <article class="score"><strong>0</strong><b>OG-тегов</b><span>Ссылки на сайт в мессенджерах и соцсетях не используют брендовый потенциал.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principle">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Ключевая смена оптики</div><h2>Не слэб.<br>А результат.</h2></div>
+          <p>Покупателю важно не «посмотреть 638 карточек». Он хочет убедиться, что материал подойдет под его интерьер, цена не станет сюрпризом, а монтаж пройдет без переделок.</p>
+        </div>
+        <p class="quote">Сайт должен продавать <em>управляемый результат:</em> подходящий камень, понятный бюджет, точное изготовление и спокойный монтаж.</p>
+      </div>
+    </section>
+
+    <section id="queues">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Три очереди</div><h2>Не смешивать<br>разные<br>задачи.</h2></div>
+          <p>Первая очередь улучшает уже существующий сайт. Вторая меняет его информационную архитектуру. Третья затрагивает процессы компании и поэтому внедряется только вместе с готовностью команды поддерживать новый сервис.</p>
+        </div>
+        <div class="queue-switch" role="tablist" aria-label="Очереди работ">
+          <button class="queue-button" role="tab" aria-selected="true" aria-controls="queue-one" id="queue-one-tab">01 / SEO-ремонт</button>
+          <button class="queue-button" role="tab" aria-selected="false" aria-controls="queue-two" id="queue-two-tab">02 / Перестройка сайта</button>
+          <button class="queue-button" role="tab" aria-selected="false" aria-controls="queue-three" id="queue-three-tab">03 / Бизнес-процессы</button>
+        </div>
+
+        <div class="queue-panel is-active" id="queue-one" role="tabpanel" aria-labelledby="queue-one-tab">
+          <article class="queue-intro"><div class="eyebrow">Без смены дизайна</div><h3>Сделать существующие URL понятными поиску.</h3><p>Это косметический ремонт, который не требует создания нового сайта, но дает чистую базу для продвижения.</p><div class="queue-number">01</div></article>
+          <div class="steps">
+            <article class="step"><span class="step-index">01</span><div><h4>Выправить H1, title и description</h4><p>Главная, каталог, бренды, изделия и карточки должны говорить одним коммерческим языком.</p></div></article>
+            <article class="step"><span class="step-index">02</span><div><h4>Разделить ценные и технические фильтры</h4><p>Развивать только посадочные со спросом; слабые теги и дубли закрыть от индексации.</p></div></article>
+            <article class="step"><span class="step-index">03</span><div><h4>Добавить Product, Service и FAQ schema</h4><p>Дать поисковику данные о товаре, бренде, наличии, услуге и реальных вопросах клиента.</p></div></article>
+            <article class="step"><span class="step-index">04</span><div><h4>Подключить измерение</h4><p>Search Console, Вебмастер и Метрика: позиции, заявки, клики, мобильная скорость.</p></div></article>
+          </div>
+        </div>
+
+        <div class="queue-panel" id="queue-two" role="tabpanel" aria-labelledby="queue-two-tab">
+          <article class="queue-intro"><div class="eyebrow">Новые посадочные</div><h3>Собрать путь от изделия к материалу и кейсу.</h3><p>Каталог становится частью системы: он помогает выбрать, а не заменяет консультацию.</p><div class="queue-number">02</div></article>
+          <div class="steps">
+            <article class="step"><span class="step-index">01</span><div><h4>Пять сильных страниц изделий</h4><p>Кухня, ванная, подоконники, ступени, барные стойки — с фото, материалами, ценой и CTA.</p></div></article>
+            <article class="step"><span class="step-index">02</span><div><h4>Серия реальных кейсов</h4><p>10–15 историй с задачей, выбором камня, сложностями, результатом и фотографиями.</p></div></article>
+            <article class="step"><span class="step-index">03</span><div><h4>База знаний, которая ведет в заявку</h4><p>Выбор камня, бюджет, уход, замер, кромки, мойки — каждый материал связан с услугой.</p></div></article>
+            <article class="step"><span class="step-index">04</span><div><h4>Новая перелинковка</h4><p>Изделие → материал → кейс → расчет. Пользователь не теряет контекст.</p></div></article>
+          </div>
+        </div>
+
+        <div class="queue-panel" id="queue-three" role="tabpanel" aria-labelledby="queue-three-tab">
+          <article class="queue-intro"><div class="eyebrow">Сервис вокруг сайта</div><h3>Убрать тревогу клиента до первого звонка.</h3><p>Это не виджеты ради эффекта, а понятные инструменты, которые требуют готовности производства и менеджеров.</p><div class="queue-number">03</div></article>
+          <div class="steps">
+            <article class="step"><span class="step-index">01</span><div><h4>Предварительный расчет</h4><p>Честный диапазон стоимости с формой, размерами, материалом, вырезами и загрузкой проекта.</p></div></article>
+            <article class="step"><span class="step-index">02</span><div><h4>Расчет по плану или фото</h4><p>Маршрутизация лида в CRM, ответственный и SLA: клиент понимает, когда получит ответ.</p></div></article>
+            <article class="step"><span class="step-index">03</span><div><h4>Визуализатор декоров</h4><p>Сначала типовые кухни и ванные, затем — фото своего помещения и подбор образцов.</p></div></article>
+            <article class="step"><span class="step-index">04</span><div><h4>Замер и шоу-рум по записи</h4><p>Выбор слота, напоминание, маршрут, а затем — прозрачный статус заказа.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture" id="architecture">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Очередь 2</div><h2>Сайт как<br>карта выбора.</h2></div>
+          <p>Новые разделы не отменяют существующий каталог. Они дают пользователю удобные точки входа: по изделию, задаче, материалу, бюджету и готовому примеру.</p>
+        </div>
+        <div class="tree">
+          <div class="tree-row accent"><b>ГЛАВНАЯ</b><span>Выбрать изделие → увидеть реальные работы → рассчитать проект</span></div>
+          <div class="tree-row"><b>ИЗДЕЛИЯ</b><span>Кухни · ванные · подоконники · лестницы · барные стойки · стеновые панели · мойки</span></div>
+          <div class="tree-row"><b>МАТЕРИАЛЫ</b><span>Кварц · акрил · бренды · коллекции · цвета · каталог слэбов</span></div>
+          <div class="tree-row"><b>ПРОЕКТЫ</b><span>Кухни · ванные · подоконники · коммерческие объекты · решения со сложными узлами</span></div>
+          <div class="tree-row"><b>КАК РАБОТАЕМ</b><span>Замер · производство · монтаж · гарантия · ответы на вопросы</span></div>
+          <div class="tree-row"><b>БАЗА ЗНАНИЙ</b><span>Как выбрать · сколько стоит · как ухаживать · как подготовиться к замеру</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Примеры нужных страниц</div><h2>Не менять<br>лицо бренда.<br>Добавить пользу.</h2></div>
+          <p>Каждая будущая страница сохраняет чистую эстетику Romastone: белый фон, камень как главный герой, много воздуха, графитовая типографика и малиновый акцент действия.</p>
+        </div>
+        <div class="examples">
+          <article class="page-card">
+            <div class="page-visual pink"><span class="page-type">Коммерческая посадочная</span><h3>Столешницы из кварцевого камня</h3></div>
+            <div class="page-copy"><p>Главная точка входа для человека, который уже знает, что ему нужна столешница, но не знает материал и бюджет.</p><ul><li>Реальные проекты</li><li>Материалы и цвета</li><li>Что влияет на цену</li><li>Расчет по размерам</li></ul></div>
+          </article>
+          <article class="page-card">
+            <div class="page-visual dark"><span class="page-type">Кейс</span><h3>Кухня с интегрированной мойкой: от плана до монтажа</h3></div>
+            <div class="page-copy"><p>Доказательство качества вместо общего обещания: задача, камень, сложный узел, производство, результат.</p><ul><li>Почему выбран этот декор</li><li>Стыки, кромки, вырезы</li><li>Фото процесса</li><li>Рассчитать похожий проект</li></ul></div>
+          </article>
+          <article class="page-card">
+            <div class="page-visual light"><span class="page-type">Помощь с выбором</span><h3>Сколько стоит столешница и от чего зависит цена</h3></div>
+            <div class="page-copy"><p>SEO-материал, который снимает страх «мне назовут цену только после разговора» и ведет в предварительный расчет.</p><ul><li>Размер и форма</li><li>Толщина и кромка</li><li>Вырезы и мойка</li><li>Загрузить план кухни</li></ul></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Очередь 3</div><h2>Сайт, который<br>помогает<br>решить.</h2></div>
+          <p>Калькулятор и визуализатор нужны не потому, что они «современные». Они закрывают два ключевых вопроса клиента: сколько стоит и как это будет выглядеть у меня.</p>
+        </div>
+        <div class="tool-grid">
+          <article class="tool-main">
+            <div class="eyebrow" style="color:white">Инструмент №1 / сначала MVP</div>
+            <h3>Предварительный расчет без ложной точности.</h3>
+            <p>Показываем диапазон стоимости и объясняем его. Точный расчет остается за специалистом после плана, замера и выбора материала.</p>
+            <div class="flow"><span>Изделие</span><span>Форма</span><span>Размеры</span><span>Камень</span><span>Вырезы</span><span>Диапазон</span><span>Заявка</span></div>
+          </article>
+          <div class="tool-side">
+            <article class="tool-small"><div class="eyebrow">Следующий шаг</div><h3>Загрузить проект</h3><p>План, PDF или фото кухни автоматически создают лид «расчет по проекту» с ответственным и сроком ответа.</p></article>
+            <article class="tool-small"><div class="eyebrow">После подтверждения спроса</div><h3>Визуализатор камня</h3><p>Сравнение декоров сначала в типовых интерьерах, затем — на фотографии помещения клиента.</p></article>
+          </div>
+        </div>
+        <article class="business-case">
+          <h3>Почему не стоит начинать с «крутого калькулятора»</h3>
+          <p>Третья очередь не является обязательной тратой. Она включается, <b>когда первые две уже дали поток целевых посетителей и понятно, какие вопросы они задают чаще всего.</b> Тогда расчет экономит время менеджера, визуализатор ускоряет выбор, а запись на замер уменьшает потери между интересом и заказом.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Порядок роста</div><h2>Сначала<br>чистый сигнал.<br>Потом масштаб.</h2></div>
+          <p>Каждый этап заканчивается измерением. Мы не переходим к более дорогому продукту, пока не увидели, что предыдущий снял нужную проблему и создал спрос.</p>
+        </div>
+        <div class="timeline">
+          <article class="phase"><small>0–30 дней</small><h3>Основа</h3><p>SEO-ремонт и запуск измерения.</p><ul><li>H1, title, description</li><li>schema и OG</li><li>фильтры и sitemap</li><li>5 посадочных, 3 кейса</li></ul></article>
+          <article class="phase"><small>30–90 дней</small><h3>Спрос</h3><p>Расширяем поисковый и доверительный контур.</p><ul><li>10–15 кейсов</li><li>база знаний</li><li>перелинковка</li><li>MVP расчета по проекту</li></ul></article>
+          <article class="phase"><small>После подтверждения</small><h3>Сервис</h3><p>Встраиваем инструменты в реальный процесс компании.</p><ul><li>конфигуратор</li><li>визуализатор</li><li>онлайн-запись</li><li>статус заказа</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="control">
+      <div class="shell">
+        <div class="section-heading">
+          <div><div class="eyebrow">Как измерим результат</div><h2>Улучшение<br>должно быть<br>видно.</h2></div>
+          <p>Без базовых метрик любая переделка остается субъективным впечатлением. Техническая и маркетинговая проверка идут параллельно.</p>
+        </div>
+        <div class="control-grid">
+          <article class="control-card"><h3>Технический контроль</h3><p>Индексируемость и качество SEO-сигналов.</p><ul><li>Coverage и индекс в Search Console</li><li>Ошибки sitemap и canonical</li><li>Rich Results Test</li><li>Mobile Core Web Vitals</li></ul></article>
+          <article class="control-card"><h3>Маркетинговый контроль</h3><p>Спрос, путь клиента и результат для бизнеса.</p><ul><li>Показы и клики по кластерам</li><li>Конверсия посадочных</li><li>Открытие расчета и загрузка проекта</li><li>Срок реакции на лид и запись на замер</li></ul></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div><div class="eyebrow">Итог</div><h2>ROMASTONE становится понятным выбором, а не просто еще одним каталогом камня.</h2></div>
+      <p>Дорожная карта подготовлена на основе публичной версии romastone.ru и первичной SEO-инспекции.</p>
+    </div>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.queue-button');
+    const panels = document.querySelectorAll('.queue-panel');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((item) => item.setAttribute('aria-selected', 'false'));
+        panels.forEach((panel) => panel.classList.remove('is-active'));
+        button.setAttribute('aria-selected', 'true');
+        document.getElementById(button.getAttribute('aria-controls')).classList.add('is-active');
+      });
+    });
+  </script>
+</body>
+</html>
